@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main>
+    <form action="/send" method="post">
+        <fieldset>
+            <div class="half-width">
+                <label for="last-name">Фамилия<span class="required"><sup>*</sup></span></label>
+                <input type="text" name="last-name" id="last-name" placeholder="Ваша фамилия" required autofocus>
+            </div>
+            <div class="half-width">
+                <label for="patronymic">Отчество</label>
+                <input type="text" name="patronymic" id="patronymic" placeholder="Ваше Отчество">
+            </div>
+            <div class="half-width">
+                <label for="first-name">Имя<span class="required"><sup>*</sup></span></label>
+                <input type="text" name="first-name" id="first-name" placeholder="Ваше имя" required>
+            </div>
+            <div class="half-width">
+                <label for="phone">Телефон<span class="required"><sup>*</sup></span></label>
+                <input type="tel" name="phone" id="phone" placeholder="+7 ХХХ ХХХ ХХХХ" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <label for="appeal">Обращение<span class="required"><sup>*</sup></span></label>
+            <textarea name="appeal" id="appeal" rows="5" placeholder="Ваше обращение" required style="resize:none;"></textarea>
+            <div class="required-text"><span>*</span> - поля, обязательные для заполнения</div>
+        </fieldset>
+        {% module xsrf_form_html() %}
+        <div class="button">
+            <input type="submit" value="Отправить">
+        </div>
+        <div class="button">
+            <a href="http://localhost:8080/?pgsql=db&username=docker&db=docker&ns=public">
+                <input type="button" value="Вход в базу данных, пароль: 6666, user: docker"> 
+            </a>
+        </div>
+    </form>
+</main>
+{% end %}

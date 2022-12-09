@@ -1,0 +1,79 @@
+version: '3'
+
+volumes:
+  rabbitmq_data:
+  frontend_backend_data:
+
+services:
+  frontend:
+    build: frontend/
+    container_name: web
+    volumes:
+      - frontend_backend_data:/fr_bc_data/
+    
+  backend:
+    depends_on:
+      - rabbitmq
+    restart: always
+    build: backend/
+    container_name: backend
+    ports:
+      - "80:80"
+    volumes:
+      - frontend_backend_data:/backend/src/
+    environment:
+      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672'
+    networks:
+      - network
+
+  rabbitmq:
+    restart: always
+    build: rabbitmq
+    container_name: 'rabbitmq'
+    restart: always
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbitmq_data:/data/
+    networks:
+      - network
+
+  servicedb:
+    restart: always
+    build: servicedb
+    container_name: 'servicedb'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: "6666"
+      POSTGRES_USER: docker
+      POSTGRES_DB: docker
+      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672'
+    networks:
+      - network
+
+  db:
+    build: db/
+    container_name: postgres_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "6666"
+      POSTGRES_USER: docker
+      POSTGRES_DB: docker
+    networks:
+      - network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - network
+
+networks:
+  network: {}

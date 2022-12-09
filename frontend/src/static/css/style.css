@@ -1,0 +1,100 @@
+body {
+  min-width: 600px;
+}
+
+main {
+  min-height: 400px;
+}
+
+form{
+  width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #cccccc;
+}
+
+fieldset {
+  margin-bottom: 15px;
+  padding: 10px;
+
+  border: 1px solid #34495e;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+  width: 95%;
+  margin: 0 0 10px 0;
+  padding: 2px 5px;
+
+  vertical-align: middle;
+
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+input,
+select {
+  height: 24px;
+}
+
+input[type="submit"], input[type="button"] {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 0 5px;
+  padding: 6px 15px;
+
+  color: #ffffff;
+
+  background-color: #ff4500;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="button"] {
+  background-color: gray;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.half-width {
+  display: inline-block;
+  margin-right: -4px;
+}
+
+.half-width input{
+    width: 80%;
+}
+
+.required {
+    font-size: 0.75em;
+    color: #ff4500;
+}
+
+.required-text::first-letter{
+    color: #ff4500;
+}
+
+.required-text{
+    font-size: 0.75em;
+}
+
+.button {
+  margin-top: 10px;
+
+  text-align: center;
+}
+
